@@ -1,0 +1,101 @@
+@startuml "Diagramas"
+'Un teclado tiene por lo menos 105 tecla
+Class Teclado
+note top of Teclado : Ejercicio b.1
+
+Teclado "1" -- "105..." Teclas
+
+'Los estudiantes, los profesores y los empleados son personas
+class Persona
+note top of Persona : Ejercicio b.2
+
+Persona <|- Estudiante
+Persona <|- Profesor
+Persona <|- Empleado
+
+'Un disco duro esta formado por pistas, y las pistas están formadas por sectores
+class Disco
+note top of Disco : Ejercicio b.3
+
+Disco *-- Pistas
+Pistas *-- Sectores
+
+'Un triángulo es un polígono que esta formado por 3 lado
+Class Poligono
+note top of Poligono : Ejercicio b.4
+
+Poligono <|-- Triangulo 
+Triangulo "1" *-- "3" Lados
+
+'Un equipo de baseball está formado por jugadores y tienen asignado como homeclub un estadio
+Class Equipo
+note top of Equipo : Ejercicio b.5
+
+Equipo  o-- "*"Jugadores
+Equipo --* Estadio
+
+'Un comité está integrado por dos o más personas. Una persona puede o no pertenecer a comités. Cada comité tiene un coordinador que forma parte del comité y una misma persona puede coordinar más de un comité.
+Class Comite {
+    -Coordinador: string
+    -Miembros: int
+}
+Class Persona2 {
+    -Nombre : string
+    -Pertenece al comité : string
+    -Es coordinador: bool
+}
+note top of Comite : Ejercicio b.6
+
+Comite "2.." -- "0.." Persona2
+Comite "1" -- "1" Persona2 : Coordinador
+
+'Una caracterización se fundamenta en al menos un criterio, un elemento clasificado se genera a partir de una caracterización que depende del criterio utilizado.
+Class Caracterización
+note top of Caracterización : Ejercicio b.7
+
+Caracterización "1" *-- "1" Clasificación
+Caracterización "1"*-- "*" Criterios 
+
+'Un laboratorio tiene una diversidad de equipos, pero solamente un laboratorio nuclear puede tener equipos nucleares 
+Class Laboratorio
+note top of Laboratorio : Ejercicio b.8
+
+Laboratorio *-- "*" Equipos
+Equipos <|-- Equipos_Nucleares
+Laboratorio <|-- Laboratorio_Nuclear
+Laboratorio_Nuclear *-- Equipos_Nucleares
+
+'La ecuación de FP tiene 2 operandos, el primero es UFC, el segundo es TCF. Los TCF dependen de la valoración de 14 subfactores de complejidad técnica (Fi) 
+Class Eq_FP
+note top of Eq_FP : Ejercicio b.9
+
+Eq_FP *-- UFC
+Eq_FP *-- TCF
+TCF *-- "14" Subfactores_FI
+
+'Un trabajo de grado especial (TEG) y un trabajo de grado de maestría (TGM) son trabajos de investigación. Todo trabajo de investigación es dirigido por uno o a lo sumo dos profesores que juegan el rol de tutor. Un mismo profesor puede dirigir varios trabajos de investigación. Un TGM siempre se realiza de manera individual, es decir, un solo estudiante de postgrado mientras que un TEG puede ser realizado por uno o dos estudiantes de pregrado
+Class Trabajo_Investigacion
+note top of Trabajo_Investigacion: Ejercicio b.10
+
+Trabajo_Investigacion <|-- TEG
+Trabajo_Investigacion <|-- TGM
+Trabajo_Investigacion *-- "1..2"Tutor
+TEG *--"1..2" Estudiante2
+TGM *-- Estudiante2
+
+'Suponga que un documento gráfico está compuesto de hojas. Cada hoja contiene un objeto dibujo. Un objeto dibujo puede ser: texto, figura 2D, o grupo. Un grupo consta de al menos dos objetos dibujo. Un objeto de dibujo puede ser a lo sumo miembro de un grupo. Una figura 2D puede ser circulo o cuadrado.'
+
+Class Doc_Grafico
+note top of Doc_Grafico : Ejercicio b.11
+
+Doc_Grafico *-- Hojas
+Hojas *-- Dibujo
+Dibujo <|- Texto
+Dibujo <|- Figura2D
+Dibujo "2" --* Grupo
+Figura2D <|-- Circulo
+Figura2D <|-- Cuadrado
+
+
+
+@enduml

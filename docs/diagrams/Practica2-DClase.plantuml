@@ -1,0 +1,31 @@
+@startuml "VzlCol"
+class Equipo{
+    -Capitán : int
+    -Nombre : string
+    -Registro : int
+}
+class Jugador{
+    -Capitán : bool
+    -Numero : int
+    -Posición : string
+}
+class Entrenador{
+    -Acreditación : string
+    -AñosExp: int
+}
+class Juego{
+    -Localidad : string
+    -Puntuacion: int
+}
+class Persona{
+    -Nombre : string
+    -Telefono: int
+    -Direccion : string
+}
+
+Equipo  o-- "6..20" Jugador
+Equipo "*" o--  Entrenador
+Equipo "2" o-- "*" Juego
+Persona  <|--  Jugador
+Persona <|--  Entrenador
+@enduml

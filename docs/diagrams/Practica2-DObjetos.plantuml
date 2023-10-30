@@ -1,0 +1,119 @@
+@startuml "VzlColObj"
+'Declaración de nombres
+'Equipos y juego
+object "VnzlaVsCol : Juego" as juego
+object "Vnzla : Equipo" as v
+object "Col : Equipo" as c
+'Entrenadores
+object "E-Vnzla : Entrenador" as ev
+object "E-Col : Entrenador" as ec
+'Capitanes
+object "Capi-Vnzla : Jugador" as cv
+object "Capi-Col : Jugador" as cc
+'Jugadores
+object "P1-Vnzla: Jugador" as p1v
+object "P2-Vnzla: Jugador" as p2v
+object "P1-Col: Jugador" as p1c
+object "P2-Col: Jugador" as p2c
+
+
+
+object juego {
+  -Localidad = "Chile"
+  -Puntuación = 20
+}
+
+'Equipos
+object v { 
+  -Capitan = 1
+  -Nombre = "Venezuela"
+  -Registro = "0000X"
+}
+object c {
+  -Capitan = 1
+  -Nombre = "Colombia"
+  -Registro = "0000z"
+}
+
+'Entrenadores
+object ev { /'Entrenador venezuela'/
+  -Nombre = "Juan Perez"
+  -Telefono = 4121234567
+  -Dirección = "Caracas"
+  -Acreditación = "ABCD"
+  -Experiencia = 3
+}
+object ec { /'Entrenador Colombia'/
+  -Nombre = "Pablo Lopez"
+  -Telefono = 6019181316
+  -Dirección = "Cali"
+  -Acreditación = "EDFG"
+  -Experiencia = 2
+}
+
+'Capitanes
+object cv { /'Capi venezuela'/
+  -Nombre = "Antonio Machado"
+  -Telefono = 4121234567
+  -Dirección = "Caracas"
+  -Capitan = true
+  -Numero = 1
+  -Posición = "Central delantero"
+}
+object cc { /'Capi Colombia'/
+  -Nombre = "José Gutierrez"
+  -Telefono = 6019181316
+  -Dirección = "Bogotá"
+  -Capitan = true
+  -Numero = 1
+  -Posición = "Central delantero"
+}
+
+'Jugadores
+object p1v { 
+  -Nombre = "Gabriel Rodriguez"
+  -Telefono = 4121234567
+  -Dirección = "Valencia"
+  -Capitan = false
+  -Numero = 10
+  -Posición = "Levantador delantero"
+}
+object p2v { 
+  -Nombre = "Miguel Rondon"
+  -Telefono = 4121234567
+  -Dirección = "Barquisimeto"
+  -Capitan = false
+  -Numero = 2
+  -Posición = "Punta Zanguero"
+}
+object p1c { 
+  -Nombre = "Rafael Altuve"
+  -Telefono = 6019181316
+  -Dirección = "Barranquilla"
+  -Capitan = false
+  -Numero = 4
+  -Posición = "Levantador Zanguero"
+}
+object p2c { 
+  -Nombre = "Jose Cuadrado"
+  -Telefono = 6019181316
+  -Dirección = "Bogotá"
+  -Capitan = false
+  -Numero = 6
+  -Posición = "Punta delantero"
+}
+
+'--------Relaciones
+juego -- v
+juego -- c
+'Relaciones equipo venezolano
+v -- ev
+v -- cv
+v -- p1v
+v -- p2v
+'Relaciones equipo colombiano
+c -- ec
+c -- cc
+c -- p1c
+c -- p2c
+@enduml
