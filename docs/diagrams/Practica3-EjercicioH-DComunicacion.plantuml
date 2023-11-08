@@ -1,0 +1,45 @@
+@startuml Comunicación
+'Configuraciones del modelo
+skinparam noteBackgroundColor transparent
+skinparam noteBorderColor transparent'
+hide members
+allowmixing 
+
+
+actor :User: as Men
+object ": Registro" as registro
+object ": Venta" as venta
+object ": Lista " as lista
+object ": CatalogoProducto " as catalogo
+
+Men -d--> registro
+note on link
+    1: crearNuevaVenta()
+    2: introducirArticulo(id, cant)
+    
+    6: finalizarVenta()
+end note
+
+registro -r--> catalogo
+note on link 
+    3: getEspecificaciones(id)
+end note
+
+registro -d--> venta
+note on link
+    4: crearLineaVenta(espc,cant)
+end note
+
+venta -r--> lista
+note on link
+    5: añadir(new LineaVenta(espec,cant))
+end note
+
+skinparam object{
+    FontSize 14
+    BackgroundColor #cfe0fc
+    BorderColor #000000
+}
+
+
+@enduml

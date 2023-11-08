@@ -1,0 +1,34 @@
+@startuml estado
+
+scale 600 width
+state urgencia <<choice>>
+state enviar <<join>>
+state terminar <<fork>>
+state final <<join>>
+
+[*] --> Colocando_Pedido : entregarProducto ()
+Colocando_Pedido --> Validando_Pedido : validarPedido ()
+Validando_Pedido --> Cobrando_Pedido : cobrarPago ()
+Cobrando_Pedido --> Adelantando_Pago : pagar ()
+Adelantando_Pago --> Obteniendo_Producto : obtenerProducto()
+Obteniendo_Producto --> urgencia : verificarUrgencia ()
+urgencia -l--> Enviando_Urgentemente: si
+urgencia -r--> Enviando_Normalmente: no
+
+'join enviar
+Enviando_Urgentemente ---> enviar
+Enviando_Normalmente ---> enviar
+enviar --> Terminando_Pedido: enviar()
+
+'fork terminar
+Terminando_Pedido --> terminar
+terminar ---> Añadiendo_Cliente_Satisfecho: añadirListaSatisfechos()
+terminar ---> Enviando_Recibo : enviarRecibo()
+
+'join final
+Añadiendo_Cliente_Satisfecho ---> final
+Enviando_Recibo ---> final 
+final ---> [*] : finalizarPedido()
+
+
+@enduml
