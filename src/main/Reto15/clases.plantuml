@@ -1,0 +1,54 @@
+@startuml reto13
+skinparam ClassBackgroundColor white
+skinparam classAttributeIconSize 0
+hide circle
+hide attribute
+
+class TurnOnDevices {
+    + main(String[] args)
+    + turnOnDevice(Connectable device)
+}
+
+class Connectable <<Interface>> {
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class Lamp {
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class Computer {
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class CoffeMaker{
+    +on()
+    +off()
+    +isOff()
+}
+
+class Adapter{
+    -adaptee : CoffeMaker
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+note left of Adapter::isOn()
+    **return  !**adaptee.isOff()
+end note
+
+show Adapter attribute
+
+TurnOnDevices -r--> Connectable
+Connectable <|-- Lamp
+Connectable <|-- Computer
+Connectable <|-d- Adapter
+Adapter --> CoffeMaker
+@enduml
